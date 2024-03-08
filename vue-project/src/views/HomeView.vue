@@ -8,7 +8,7 @@
  import { ref, onMounted } from "vue";
  const apidata = ref("")
  async function getApiData() {
-  let res = await fetch ("https://data.cityofnewyork.us/resource/7z8d-msnt.json")
+  let res = await fetch ("https://www.bklynlibrary.org/locations/json")
   let data = await res.json();
   apidata.value = data;
  }
