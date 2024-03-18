@@ -21,7 +21,7 @@ export default {
     this.loaded = false
 
     try {
-      const { userlist } = await fetch('https://www.bklynlibrary.org/locations/json')
+      const { userlist } = await fetch('https://data.cityofnewyork.us/resource/f9bf-2cp4.json')
       this.chartdata = userlist
 
       this.loaded = true
