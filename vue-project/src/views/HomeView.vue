@@ -9,9 +9,7 @@ async function api () {
   let putasjson = await fetchthing.json();
   nyc.value = putasjson;
   console.log(putasjson)
-}
-
-
+}  
 catch (error) {
   console.log ("error", error)
 }}
@@ -19,14 +17,10 @@ onBeforeMount(() =>{
     api();
 })
 
+</script>
 
-+</script>
 
 <template>
   <main>
   </main>
 </template>
-
-
-
-
