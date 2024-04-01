@@ -1,5 +1,13 @@
 <template>
   <div class="home-view">
+    <router-link to="/blank-page" class="link">SAT Reading Avg</router-link> 
+    <div class="cards-container">
+      <div v-for="school in schools" :key="school.dbn" class="card">
+        <h3>{{ school.school_name }}</h3>
+        <p>DBN: {{ school.dbn }}</p>
+        <p>SAT Takers: {{ school.num_of_sat_test_takers }}</p>
+      </div>
+    </div>
     <PieChart :chartData="chartData" v-if="loaded" />
     <div v-else>Loading...</div>
   </div>
@@ -16,7 +24,8 @@ export default {
   data() {
     return {
       loaded: false,
-      chartData: null
+      chartData: null,
+      schools: [] 
     }
   },
   async mounted() {
@@ -27,25 +36,14 @@ export default {
       }
       const data = await response.json()
 
-      const groupedData = {}
-      data.forEach(item => {
-        const ethnicity = item.race_ethnicity
-        const score = parseInt(item.sat_critical_reading_avg_score) + parseInt(item.sat_math_avg_score) + parseInt(item.sat_writing_avg_score)
-        if (!groupedData[ethnicity]) {
-          groupedData[ethnicity] = 0
-        }
-        groupedData[ethnicity] += score
-      })
+      this.schools = data.map(item => ({
+        school_name: item.school_name,
+        dbn: item.dbn,
+        num_of_sat_test_takers: item.num_of_sat_test_takers
+      }))
 
-      const labels = Object.keys(groupedData)
-      const datasets = [{
-        data: Object.values(groupedData),
-        backgroundColor: labels.map(_ => '#' + Math.floor(Math.random()*16777215).toString(16)),
-        label: 'SAT Scores'
-      }]
-
-      this.chartData = { labels, datasets }
-      this.loaded = true
+      this.chartData = chartData;
+      this.loaded = true;
     } catch (error) {
       console.error('Error fetching data:', error)
     }
@@ -58,6 +56,28 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-wrap: wrap; 
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+.link {
+  font-size: 25px; /* Increase font size */
 }
 </style>
