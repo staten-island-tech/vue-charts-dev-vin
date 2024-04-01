@@ -1,6 +1,7 @@
 <template>
   <div class="home-view">
     <router-link to="/blank-page" class="link">SAT Reading Avg</router-link> 
+    <router-link to="/math-view" class="link">SAT Math Avg</router-link> 
     <div class="cards-container">
       <div v-for="school in schools" :key="school.dbn" class="card">
         <h3>{{ school.school_name }}</h3>
