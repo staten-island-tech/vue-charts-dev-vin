@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import BlankPage from '../views/BlankPage.vue' // Import BlankPage.vue
+import BlankPage from '../views/BlankPage.vue' 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +11,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/blank-page', // Add route for BlankPage.vue
+      path: '/blank-page', 
       name: 'blank-page',
       component: BlankPage
     }
