@@ -78,6 +78,6 @@ h3 {
 }
 
 .link {
-  font-size: 25px; /* Increase font size */
-}
+  font-size: 25px; 
+  }
 </style>
