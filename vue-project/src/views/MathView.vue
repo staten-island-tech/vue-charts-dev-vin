@@ -1,6 +1,10 @@
 <template>
   <div>
+    <router-link to="/" class="link">Home Page</router-link>
     <Line v-if="loaded" :data="chartData"></Line>
+  </div>
+  <div class="container">
+    <Bar v-if="loaded" :data="chartData" :options="chartOptions"></Bar>
   </div>
 </template>
 
@@ -9,7 +13,6 @@ import { ref, onBeforeMount } from 'vue'
 import { Line } from 'vue-chartjs'
 import { Chart } from 'chart.js/auto'
 import {
-  Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
@@ -62,4 +65,9 @@ onBeforeMount(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.link {
+  margin-top: 20px;
+  font-size: 25px;
+}
+</style>
